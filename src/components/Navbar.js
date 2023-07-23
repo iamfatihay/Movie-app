@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import avatar from "../assets/icons/avatar.png";
 import { logOut } from "../auth/firebase";
@@ -6,6 +6,26 @@ import { AuthContext } from "../context/AuthContextProvider";
 import Switch from "./Switch";
 
 const Navbar = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const handleDropdownToggle = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+  useEffect(() => {
+    const closeDropdown = () => {
+      setIsDropdownOpen(false);
+    };
+
+    // Dropdown menüsünün dışına tıklandığında menünün kapanmasını sağlamak için bir olay dinleyicisi ekleme
+    document.addEventListener("click", closeDropdown);
+
+    // Component temizlendiğinde olay dinleyicisini kaldırma
+    return () => {
+      document.removeEventListener("click", closeDropdown);
+    };
+  }, []);
+
+
+
   const { currentUser } = useContext(AuthContext);
   //* with custom hook
   // const { currentUser } = useAuthContext();
@@ -17,23 +37,21 @@ const Navbar = () => {
       <nav className="w-full flex flex-wrap items-center justify-between py-3 bg-white dark:bg-gray-900 dark:text-white shadow-lg navbar navbar-expand-lg fixed-top">
         <div className="container-fluid w-full flex items-center justify-between px-6">
           <Link className="text-2xl  pr-2 font-semibold" to="/">
-            React Movie App
+            Movie App
           </Link>
-          {/* Collapsible wrapper */}
-          {/* Right elements */}
           <div className="flex items-center relative">
-            {/* Icon */}
             {currentUser && (
               <h5 className="mr-2 capitalize">{currentUser?.displayName}</h5>
             )}
             <Switch />
             <div className="dropdown relative">
-              <span
-                className="dropdown-toggle flex items-center hidden-arrow"
+              <button
+                className="dropdown-toggle flex items-center hidden-arrow focus:outline-none"
                 id="dropdownMenuButton2"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+                onClick={(e) => {
+                  e.stopPropagation(); // Stop event propagation here
+                  handleDropdownToggle(); // Call the dropdown toggle function
+                }}
               >
                 <img
                   src={currentUser?.photoURL || avatar}
@@ -42,11 +60,13 @@ const Navbar = () => {
                   alt="user"
                   loading="lazy"
                   referrerPolicy="no-referrer"
+                  // onClick={(e) => e.stopPropagation()}
                 />
-              </span>
+              </button>
               <ul
-                className="dropdown-menu min-w-max absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none left-auto right-0"
+                className={`dropdown-menu min-w-max absolute bg-white text-base z-500 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 display: ${isDropdownOpen ? "block" : "hidden"}`}
                 aria-labelledby="dropdownMenuButton2"
+                style={{ right: "0", left: "auto" }}
               >
                 <li>
                   <Link

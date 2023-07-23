@@ -1,4 +1,52 @@
-## https://movie-app-react-fay.netlify.app/
+# Blog App
+## Live Link: https://movie-app-react-fay.netlify.app/
+## Description
+
+
+```
+.
+├── README.md
+├── package-lock.json
+├── package.json
+├── public
+│   └── index.html
+├── src
+│   ├── App.css
+│   ├── App.js
+│   ├── assets
+│   │   └── icons
+│   │       ├── GoogleIcon.js
+│   │       └── avatar.png
+│   ├── auth
+│   │   └── firebase.js
+│   ├── components
+│   │   ├── MovieCard.js
+│   │   ├── Navbar.js
+│   │   ├── Switch.jsx
+│   │   └── VideoSection.jsx
+│   ├── context
+│   │   └── AuthContextProvider.js
+│   ├── helpers
+│   │   └── ToastNotify.js
+│   ├── index.css
+│   ├── index.js
+│   ├── pages
+│   │   ├── Login.js
+│   │   ├── Main.js
+│   │   ├── MovieDetail.js
+│   │   └── Register.js
+│   └── router
+│       ├── PrivateRouter.jsx
+│       └── Router.js
+└── tailwind.config.js
+```
+
+
+
+
+
+
+
 
 # Getting Started with Create React App
 

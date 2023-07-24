@@ -60,45 +60,55 @@ const Navbar = () => {
                   alt="user"
                   loading="lazy"
                   referrerPolicy="no-referrer"
-                  // onClick={(e) => e.stopPropagation()}
+                // onClick={(e) => e.stopPropagation()}
                 />
               </button>
-              <ul
-                className={`dropdown-menu min-w-max absolute bg-white text-base z-500 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 display: ${isDropdownOpen ? "block" : "hidden"}`}
-                aria-labelledby="dropdownMenuButton2"
-                style={{ right: "0", left: "auto" }}
-              >
-                <li>
-                  <Link
-                    className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                    to="/register"
-                  >
-                    Register
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                    to="/login"
-                  >
-                    Login
-                  </Link>
-                </li>
-                <li>
-                  <span
-                    className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                    role="button"
-                    onClick={() => logOut()}
-                  >
-                    Logout
-                  </span>
-                </li>
-              </ul>
+
+              {currentUser ? (
+                <ul
+                  className={`dropdown-menu min-w-max absolute bg-white text-base z-500 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 display: ${isDropdownOpen ? "block" : "hidden"}`}
+                  aria-labelledby="dropdownMenuButton2"
+                  style={{ right: "0", left: "auto" }}
+                >
+                  <li>
+                    <span
+                      className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                      role="button"
+                      onClick={() => logOut()}
+                    >
+                      Logout
+                    </span>
+                  </li>
+                </ul>
+              ) : (
+                <ul
+                  className={`dropdown-menu min-w-max absolute bg-white text-base z-500 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 display: ${isDropdownOpen ? "block" : "hidden"}`}
+                  aria-labelledby="dropdownMenuButton2"
+                  style={{ right: "0", left: "auto" }}
+                >
+                  <li>
+                    <Link
+                      className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                      to="/register"
+                    >
+                      Register
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                      to="/login"
+                    >
+                      Login
+                    </Link>
+                  </li>
+                </ul>)}
+
             </div>
           </div>
-          {/* Right elements */}
+
         </div>
-      </nav>
+      </nav >
       <div className="h-[52px]"></div>
     </>
   );

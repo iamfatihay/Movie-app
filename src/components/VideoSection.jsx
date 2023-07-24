@@ -5,7 +5,7 @@ const VideoSection = ({ videoKey }) => {
     <div className="w-10/12 md:w-3/5 mx-auto my-3">
       <div className="ratio ratio-16x9">
         <iframe
-          className="rounded-xl w-full"
+          className="rounded-xl w-full h-[350px]"
           src={`https://www.youtube.com/embed/${videoKey}?autoplay=1&mute=1`}
           title="YouTube video"
           allowFullScreen

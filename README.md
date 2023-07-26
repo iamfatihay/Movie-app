@@ -1,4 +1,4 @@
-# Blog App
+# Movie App
 ## Live Link: https://movie-app-react-fay.netlify.app/
 ## Description
 Welcome to the Movie App! This project provides a user-friendly platform for movie enthusiasts to explore and discover various movies. With a sleek interface and a range of features, it allows users to search for movies, view details, and even watch trailers.
@@ -90,4 +90,4 @@ Contributions to enhance the Movie App are welcome! If you find any bugs or have
 
 ## License
 
-The Blog Application is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute the code as per the terms of the license.
+The Movie Application is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute the code as per the terms of the license.

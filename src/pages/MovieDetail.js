@@ -36,7 +36,7 @@ const MovieDetail = () => {
   }, [movieDetailBaseUrl, videoUrl]);
 
   return (
-    <div className="container px-10 mx-auto py-5">
+    <div className="container mx-auto py-5">
       <h1 className="text-center text-white text-3xl">{title}</h1>
       {videoKey && <VideoSection videoKey={videoKey} />}
       <div className="container flex justify-center px-10">

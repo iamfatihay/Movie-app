@@ -36,11 +36,17 @@ const Main = () => {
                 console.error("API Error:", err);
                 setMovies([]);
                 if (err.response?.status === 429) {
-                    toastWarnNotify("Too many requests. Please try again later.");
+                    toastWarnNotify(
+                        "Too many requests. Please try again later."
+                    );
                 } else if (err.response?.status === 401) {
-                    toastWarnNotify("API key error. Please check configuration.");
+                    toastWarnNotify(
+                        "API key error. Please check configuration."
+                    );
                 } else {
-                    toastWarnNotify("Failed to fetch movies. Please try again.");
+                    toastWarnNotify(
+                        "Failed to fetch movies. Please try again."
+                    );
                 }
             })
             .finally(() => setLoading(false));
@@ -117,11 +123,25 @@ const Main = () => {
                 ) : (
                     <div className="flex flex-col items-center justify-center mt-32">
                         <div className="text-center">
-                            <svg className="w-16 h-16 text-gray-400 dark:text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            <svg
+                                className="w-16 h-16 text-gray-400 dark:text-gray-600 mx-auto mb-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                />
                             </svg>
-                            <h3 className="text-lg font-medium text-gray-600 dark:text-gray-400 mb-2">No movies found</h3>
-                            <p className="text-gray-500 dark:text-gray-500">Try searching with different keywords</p>
+                            <h3 className="text-lg font-medium text-gray-600 dark:text-gray-400 mb-2">
+                                No movies found
+                            </h3>
+                            <p className="text-gray-500 dark:text-gray-500">
+                                Try searching with different keywords
+                            </p>
                         </div>
                     </div>
                 )}

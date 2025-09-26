@@ -60,7 +60,9 @@ const Navbar = () => {
                             </button>
                             {currentUser ? (
                                 <ul
-                                    className={`dropdown-menu min-w-max absolute bg-white/95 dark:bg-gray-800/95 backdrop-blur-md text-base z-50 float-left py-2 list-none text-left rounded-xl shadow-xl border border-gray-200/20 dark:border-gray-700/20 mt-2 ${isDropdownOpen ? "block" : "hidden"}`}
+                                    className={`dropdown-menu min-w-max absolute bg-white/95 dark:bg-gray-800/95 backdrop-blur-md text-base z-50 float-left py-2 list-none text-left rounded-xl shadow-xl border border-gray-200/20 dark:border-gray-700/20 mt-2 ${
+                                        isDropdownOpen ? "block" : "hidden"
+                                    }`}
                                     aria-labelledby="dropdownMenuButton2"
                                     style={{ right: "0", left: "auto" }}
                                 >
@@ -76,7 +78,9 @@ const Navbar = () => {
                                 </ul>
                             ) : (
                                 <ul
-                                    className={`dropdown-menu min-w-max absolute bg-white/95 dark:bg-gray-800/95 backdrop-blur-md text-base z-50 float-left py-2 list-none text-left rounded-xl shadow-xl border border-gray-200/20 dark:border-gray-700/20 mt-2 ${isDropdownOpen ? "block" : "hidden"}`}
+                                    className={`dropdown-menu min-w-max absolute bg-white/95 dark:bg-gray-800/95 backdrop-blur-md text-base z-50 float-left py-2 list-none text-left rounded-xl shadow-xl border border-gray-200/20 dark:border-gray-700/20 mt-2 ${
+                                        isDropdownOpen ? "block" : "hidden"
+                                    }`}
                                     aria-labelledby="dropdownMenuButton2"
                                     style={{ right: "0", left: "auto" }}
                                 >

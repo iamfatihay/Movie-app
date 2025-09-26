@@ -6,12 +6,23 @@ import { AuthContext } from "../context/AuthContextProvider";
 import Switch from "./Switch";
 
 const Navbar = () => {
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const { currentUser } = useContext(AuthContext);
-    //* with custom hook
-    // const { currentUser } = useAuthContext();
 
-    // const currentUser = { displayName: "felix franko" };
-    // const currentUser = false;
+    const handleDropdownToggle = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+
+    useEffect(() => {
+        const closeDropdown = () => {
+            setIsDropdownOpen(false);
+        };
+
+        document.addEventListener("click", closeDropdown);
+        return () => {
+            document.removeEventListener("click", closeDropdown);
+        };
+    }, []);
     return (
         <>
             <nav className="w-full flex flex-wrap items-center justify-between py-3 bg-white dark:bg-gray-900 dark:text-white shadow-lg navbar navbar-expand-lg fixed-top">
@@ -30,12 +41,13 @@ const Navbar = () => {
                         )}
                         <Switch />
                         <div className="dropdown relative">
-                            <span
-                                className="dropdown-toggle flex items-center hidden-arrow"
+                            <button
+                                className="dropdown-toggle flex items-center hidden-arrow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-full transition-all duration-200 hover:scale-105"
                                 id="dropdownMenuButton2"
-                                role="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDropdownToggle();
+                                }}
                             >
                                 <img
                                     src={currentUser?.photoURL || avatar}
@@ -45,37 +57,47 @@ const Navbar = () => {
                                     loading="lazy"
                                     referrerPolicy="no-referrer"
                                 />
-                            </span>
-                            <ul
-                                className="dropdown-menu min-w-max absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none left-auto right-0"
-                                aria-labelledby="dropdownMenuButton2"
-                            >
-                                <li>
-                                    <Link
-                                        className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                                        to="/register"
-                                    >
-                                        Register
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                                        to="/login"
-                                    >
-                                        Login
-                                    </Link>
-                                </li>
-                                <li>
-                                    <span
-                                        className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                                        role="button"
-                                        onClick={() => logOut()}
-                                    >
-                                        Logout
-                                    </span>
-                                </li>
-                            </ul>
+                            </button>
+                            {currentUser ? (
+                                <ul
+                                    className={`dropdown-menu min-w-max absolute bg-white/95 dark:bg-gray-800/95 backdrop-blur-md text-base z-50 float-left py-2 list-none text-left rounded-xl shadow-xl border border-gray-200/20 dark:border-gray-700/20 mt-2 ${isDropdownOpen ? "block" : "hidden"}`}
+                                    aria-labelledby="dropdownMenuButton2"
+                                    style={{ right: "0", left: "auto" }}
+                                >
+                                    <li>
+                                        <span
+                                            className="dropdown-item text-sm py-3 px-4 font-medium block w-full whitespace-nowrap bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg mx-2 transition-colors duration-200 cursor-pointer"
+                                            role="button"
+                                            onClick={() => logOut()}
+                                        >
+                                            Logout
+                                        </span>
+                                    </li>
+                                </ul>
+                            ) : (
+                                <ul
+                                    className={`dropdown-menu min-w-max absolute bg-white/95 dark:bg-gray-800/95 backdrop-blur-md text-base z-50 float-left py-2 list-none text-left rounded-xl shadow-xl border border-gray-200/20 dark:border-gray-700/20 mt-2 ${isDropdownOpen ? "block" : "hidden"}`}
+                                    aria-labelledby="dropdownMenuButton2"
+                                    style={{ right: "0", left: "auto" }}
+                                >
+                                    <li>
+                                        <Link
+                                            className="dropdown-item text-sm py-3 px-4 font-medium block w-full whitespace-nowrap bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg mx-2 transition-colors duration-200"
+                                            to="/register"
+                                        >
+                                            Register
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            className="dropdown-item text-sm py-3 px-4 font-medium block w-full whitespace-nowrap bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg mx-2 transition-colors duration-200"
+                                            to="/login"
+                                        >
+                                            Login
+                                        </Link>
+                                    </li>
+                                </ul>
+                            )}
                         </div>
                     </div>
                     {/* Right elements */}

@@ -8,19 +8,21 @@ import Register from "../pages/Register";
 import PrivateRouter from "./PrivateRouter";
 
 const Router = () => {
-  return (
-    <BrowserRouter>
-      <Navbar/>
-      <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/details/:id" element={<PrivateRouter />}>
-          <Route path="" element={<MovieDetail />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter
+            future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+        >
+            <Navbar />
+            <Routes>
+                <Route path="/" element={<Main />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/details/:id" element={<PrivateRouter />}>
+                    <Route path="" element={<MovieDetail />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    );
 };
 
 export default Router;
